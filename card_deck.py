@@ -14,11 +14,8 @@ def card_builder():
     suit_list = ["Hearts","Clubs","Spades","Diamonds"]
     suits_reqd = []
     x = 0
-    for item in suit_list:
+    for item in num_suits:
         suits_reqd.insert(x,suit_list[x])
-        x = x + 1
-        if x == num_suits:
-            break
     #print(suits_reqd)
     #uses length and number of suits to create a dictionary
     card_deck = {
