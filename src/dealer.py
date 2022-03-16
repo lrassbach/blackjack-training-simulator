@@ -31,7 +31,6 @@ class Dealer:
                     card = table_deck.pop(x)
                     dealer_hand.append(card)
                 x += 1
-            x = 0
             return dealer_hand, hand, table_deck
         
         def check_blackjack(dealer_hand):
@@ -46,9 +45,4 @@ class Dealer:
                 else:
                     blackjack = False
             return blackjack
-
-        def clear_table():
-            dealer_hand = []
-            hand = Players.get_hand()
-            return dealer_hand, hand
 
