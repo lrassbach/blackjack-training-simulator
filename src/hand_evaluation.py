@@ -5,13 +5,16 @@ import card_deck
 class HandEvaluation:
     #this method will determine the makeup of the dealer hand
     def dealer_upcard(dealer_hand):
-        dealer_up_value = card_deck.CardBuilder.card_builder_dict[dealer_hand[1]]
+        card_deck_dict = card_deck.CardBuilder.card_builder_dict()
+        dealer_show = dealer_hand[1]
+        dealer_up_value = card_deck_dict[dealer_show]
         return dealer_up_value
     
     def hand_value_sum(hand):
         hand_value = 0
+        card_deck_dict = card_deck.CardBuilder.card_builder_dict()
         for item in hand:
-            hand_value += item
+            hand_value += card_deck_dict[item]
         return hand_value
     
         #this method is hard coded to evaluate hard totals and determine the correct action for the best odds of winning 
@@ -133,25 +136,34 @@ class HandEvaluation:
         return soft_tag
     
     def split_check(hand):
-        hand_values = 0
+        values = 0
+        card_dict = card_deck.CardBuilder.card_builder_dict()
         for item in hand:
-            hand_values += item
-        split_tag = 0
-        if hand_values / len(hand) == hand[0]:
+            values += card_dict[item]
+        split_value = values / 2
+        if split_value == card_dict[hand[0]] and split_value == card_dict[hand[1]]:
             split_tag = True
-        else: 
+        else:
             split_tag = False
         return split_tag
 
     def evaluation(hand, dealer_hand):
         #TODO SOLID principles
+        hand_value = HandEvaluation.hand_value_sum(hand)
         dealer_up_value = HandEvaluation.dealer_upcard(dealer_hand)
         soft_tag = HandEvaluation.soft_check(hand)
         split_tag = HandEvaluation.split_check(hand)
         if soft_tag is True:
-            action = HandEvaluation.soft_total_eval(hand, dealer_up_value)
+            action = HandEvaluation.soft_total_eval(hand_value, dealer_up_value)
         elif split_tag is True:
-            action = HandEvaluation.split_total_eval(hand, dealer_up_value)
+            action = HandEvaluation.split_total_eval(hand_value, dealer_up_value)
         else:
-            action = HandEvaluation.hard_total_eval(hand, dealer_up_value)
+            action = HandEvaluation.hard_total_eval(hand_value, dealer_up_value)
         return action
+
+hand = ['4 of Hearts', '4 of Spades']
+
+tag = HandEvaluation.split_check(hand)
+print(tag)
+print('test')
+

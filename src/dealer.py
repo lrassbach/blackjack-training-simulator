@@ -1,4 +1,5 @@
 #dealer class
+from operator import truediv
 import card_deck
 from players import Players
 class Dealer:
@@ -12,6 +13,13 @@ class Dealer:
                     table_deck.append(y)
                 x += 1    
             return table_deck
+
+        def deck_length_check(table_deck):
+            if len(table_deck) < (len(table_deck)/12):
+                reshuffle = True
+            else:
+                reshuffle = False
+            return reshuffle
 
         #This function deals cards and removes them from the deck
         def deal_card(table_deck, num_players):
@@ -34,13 +42,15 @@ class Dealer:
             return dealer_hand, hand, table_deck
         
         def check_blackjack(dealer_hand):
+            #TODO should this be moved to card deck or hand evaluation? I'm just going to copy paste this for now but 
+            #could it/should it be a repeatable function that's called for other players as well?
             total_val = 0
             card_deck_built = card_deck.CardBuilder.card_builder_dict()
             blackjack = False
             for item in dealer_hand:
                 total_val += int(card_deck_built[item])
                 if 21 ==  total_val:
-                    print('Dealer has Blackjack! Down bad.')
+                    print('Dealer has blackjack! Down bad.')
                     blackjack = True
                 else:
                     blackjack = False

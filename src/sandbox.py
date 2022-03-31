@@ -4,12 +4,18 @@ dictionary_test_3 = {"key1" : 1, "key2" : 2, "key3" : 3, "key4" : 4}
 
 list_test = [dictionary_test_1, dictionary_test_2, dictionary_test_3] 
 
+import card_deck
 
 
-del list_test[2][1]
 
-for item in list_test:
-    print(len(item))
+hand = ['Ace of Spades', '2 of Hearts']
+
+hand_value = 0
+card_deck_dict = card_deck.CardBuilder.card_builder_dict()
+for item in hand:
+    hand_value += card_deck_dict[item]
+
+#print(hand_value)
 
 
 
