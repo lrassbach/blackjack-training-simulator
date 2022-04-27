@@ -21,7 +21,6 @@ class Main:
         table_deck = dealer.Dealer.table_deck_builder(card_deck_dictionary, deck_size)
         play = True
         while play == True:
-            #TODO allow player to quit by typing "q"
             comparison = True
             dealer_hand, hand, table_deck= dealer.Dealer.deal_card(table_deck, 1)
             UI.hand_display(dealer_hand,hand)
@@ -29,11 +28,14 @@ class Main:
             p_blackjack_check = players.Players.check_player_blackjack(hand)
             if d_blackjack_check == True or p_blackjack_check == True:
                 comparison = False
-            action = hand_evaluation.HandEvaluation.evaluation(hand, dealer_hand)
-            choice = UI.get_user_action()
-            check = UI.action_check(choice, action)
+            if comparison == True:
+                action = hand_evaluation.HandEvaluation.evaluation(hand, dealer_hand)
+                choice = UI.get_user_action()
+                check, quit = UI.action_check(choice, action)
+            if quit == True:
+                play = False
             print('------------------------------')
-            play = UI.another_game()
             print('------------------------------')
+        print('Thanks for playing!')
             
 Main.main()

@@ -161,9 +161,6 @@ class HandEvaluation:
             action = HandEvaluation.hard_total_eval(hand_value, dealer_up_value)
         return action
 
-hand = ['4 of Hearts', '4 of Spades']
 
-tag = HandEvaluation.split_check(hand)
-print(tag)
-print('test')
+
 

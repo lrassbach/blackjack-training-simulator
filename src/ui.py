@@ -3,6 +3,8 @@
 class UI:
     def welcome():
         print('Welcome to the Blackjack Trainer!')
+        print('This program is designed to help you practice your blackjack.')
+        print('Enter q to quit at any time.')
     
     def hand_display(dealer_hand, hand):
         print('Dealer shows:', dealer_hand[1])
@@ -11,25 +13,31 @@ class UI:
     def get_user_action():
             valid = False
             while valid == False:
-                choice = input('What would you like to do? Type "s" for stand, "h" for hit, "sp" for split, "d" for double:')
-                valid_input_list = ['s','h','sp','d']
+                choice = input('What would you like to do? Type "s" for stand, "h" for hit, "sp" for split, "d" for double.\nIf you would like to quit, enter q.\nChoice:')
+                valid_input_list = ['s','h','sp','d','q','Q']
                 if choice in valid_input_list:
                     valid = True
                 else:
                     valid = False
                 if valid == True:
                     return choice
-                    break    
                 else:
                     print('Error! Invalid entry.')
 
     def action_check(choice, action):
             check = False
+            quit = False
+            quitter = ['q','Q']
             if choice == action:
                 check = True
                 print("Correct!")
+                return check, quit
+            if choice in quitter:
+                quit = True
+                return check, quit
             else:
                 print("WRONG. The correct choice was "+str(action))
+                return check, quit
     
     def another_game():
         #TODO make "valid choice" into a single callable method
