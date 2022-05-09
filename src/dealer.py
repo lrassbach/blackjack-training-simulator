@@ -30,11 +30,11 @@ class Dealer:
             x = 1
             for item in range(4):
                 if x % 2 != 0:
-                    card = table_deck.pop(x)
+                    card = table_deck.pop(0)
                     hand.append(card)
                     x += 1
                 elif x % 2 == 0:
-                    card = table_deck.pop(x)
+                    card = table_deck.pop(0)
                     dealer_hand.append(card)
                     x += 1
             return dealer_hand, hand, table_deck
