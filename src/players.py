@@ -13,7 +13,7 @@ class Players:
 
     def __init__ (self, name, age):
         self.name = name
-        self.age - age
+        self.age = age
 
     def check_player_blackjack(hand):
         total_val = 0

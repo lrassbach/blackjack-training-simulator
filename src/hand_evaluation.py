@@ -28,9 +28,10 @@ class HandEvaluation:
             action = 'd'
         elif hand_value >= 13 and hand_value <= 16 and dealer_up_value < 7:
             action = 's'
+            #TODO check this line below 
         elif hand_value == 12 and dealer_up_value < 4:
             action = 'h'
-        elif hand_value == 12 and dealer_up_value > 12 and dealer_up_value < 17:
+        elif hand_value == 12 and dealer_up_value > 3 and dealer_up_value < 7:
             action = 's'
         elif hand_value > 11 and hand_value < 17 and dealer_up_value > 6:
             action = 'h'
@@ -38,7 +39,7 @@ class HandEvaluation:
             action = 'd'
         elif hand_value == 10 and dealer_up_value > 9:
             action = 'd'
-        elif hand_value == 9 and dealer_up_value < 3 and dealer_up_value > 6:
+        elif hand_value == 9 and ((dealer_up_value < 3 or dealer_up_value > 6) == True):
             action = 'h'
         elif hand_value == 9 and dealer_up_value > 2 and dealer_up_value < 7:
             action = 'd'
@@ -80,40 +81,41 @@ class HandEvaluation:
         action = ''
         card_value = int(hand_value / 2)
         _2_hit = [2,8,9,10,11]
-        if card_value == 2 and dealer_up_value in _2_hit:
+        _3_split = [4,5,6,7]
+        _5_hit = [10,11]
+        _6_split = [2,3,4,5,6]
+        _7_hit = [8,9,10,11]        
+        _9_stand = [7,10,11]
+
+        if card_value == 2 and ((dealer_up_value in _2_hit) == True):
             action = 'h'
         elif card_value == 2 and dealer_up_value not in _2_hit:
             action = 'sp'
-        _3_split = [4,5,6,7]
-        if card_value == 3 and dealer_up_value in _3_split:
+        elif card_value == 3 and dealer_up_value in _3_split:
             action = 'sp'
         elif card_value == 3 and dealer_up_value not in _3_split:
             action = 'h'
-        if card_value == 4:
+        elif card_value == 4:
             action = 'h'
-        _5_hit = [10,11]
-        if card_value == 5 and dealer_up_value in _5_hit:
+        elif card_value == 5 and dealer_up_value in _5_hit:
             action = 'h'
-        if card_value == 5 and dealer_up_value not in _5_hit:
+        elif card_value == 5 and dealer_up_value not in _5_hit:
             action = 'd'
-        _6_split = [2,3,4,5,6]
-        if card_value == 6 and dealer_up_value in _6_split:
+        elif card_value == 6 and dealer_up_value in _6_split:
             action = 'sp'
         elif card_value == 6 and dealer_up_value not in _6_split:
             action = 'h'
-        _7_hit = [8,9,10,11]
-        if card_value == 7 and dealer_up_value in _7_hit:
+        elif card_value == 7 and dealer_up_value in _7_hit:
             action = 'h'
         elif card_value == 7 and dealer_up_value not in _7_hit:
             action = 'sp'
-        if card_value == 8:
+        elif card_value == 8:
             action = 'sp'
-        _9_stand = [7,10,11]
-        if card_value == 9 and dealer_up_value in _9_stand:
+        elif card_value == 9 and dealer_up_value in _9_stand:
             action = 's'
         elif card_value == 9 and dealer_up_value not in _9_stand:
             action = 'sp'
-        if card_value == 10:
+        elif card_value == 10:
             action = 's'
         elif card_value == 11:
             action = 'sp'
