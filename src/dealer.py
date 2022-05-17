@@ -1,4 +1,5 @@
 #dealer class
+import random
 import card_deck
 from players import Players
 class Dealer:
@@ -10,27 +11,32 @@ class Dealer:
             for item in range(int(num_decks)):
                 for y in card_deck_list:
                     table_deck.append(y)
-                x += 1    
+                x += 1
+            random.shuffle(table_deck)    
             return table_deck
+
+        def deck_length_check(table_deck):
+            if len(table_deck) < (len(table_deck)/12):
+                reshuffle = True
+            else:
+                reshuffle = False
+            return reshuffle
 
         #This function deals cards and removes them from the deck
         def deal_card(table_deck, num_players):
-            import random
             import players as players
             hand = players.Players.get_hand()
             dealer_hand = []
-            ##use these records to delete from deck
-            #Conceptualize alternative method where entire deck is reshuffled instead of random draw each hand
-            random.shuffle(table_deck)
-            x = 0
+            x = 1
             for item in range(4):
-                if x % 2 == 0:
-                    card = table_deck.pop(x)
+                if x % 2 != 0:
+                    card = table_deck.pop(0)
                     hand.append(card)
-                elif x % 2 != 0:
-                    card = table_deck.pop(x)
+                    x += 1
+                elif x % 2 == 0:
+                    card = table_deck.pop(0)
                     dealer_hand.append(card)
-                x += 1
+                    x += 1
             return dealer_hand, hand, table_deck
         
         def check_blackjack(dealer_hand):
@@ -40,7 +46,7 @@ class Dealer:
             for item in dealer_hand:
                 total_val += int(card_deck_built[item])
                 if 21 ==  total_val:
-                    print('Dealer has Blackjack! Down bad.')
+                    print('Dealer has blackjack! Down bad.')
                     blackjack = True
                 else:
                     blackjack = False

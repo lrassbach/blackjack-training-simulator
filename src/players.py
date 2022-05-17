@@ -1,19 +1,29 @@
 #Class for players
 
+from card_deck import CardBuilder
+
+
 class Players:
+    
+    import card_deck
+
     def get_hand():
             player_hand = []
             return player_hand
+
     def __init__ (self, name, age):
         self.name = name
-        self.age - age
+        self.age = age
 
-    #TODO need to add a blackjack check for player hand
-
-    #TODO update this to Players class
-        # def hand_evaluation(hand):
-        # card_deck_built = card_deck.CardBuilder.card_builder()
-        # hand_value = 0
-        # for item in hand:
-        #     hand_value += card_deck_built[item]
-        # return hand_value
+    def check_player_blackjack(hand):
+        total_val = 0
+        card_dict = CardBuilder.card_builder_dict()
+        blackjack = False
+        for item in hand:
+            total_val += int(card_dict[item])
+            if 21 ==  total_val:
+                print('Player has blackjack! Easy money.')
+                blackjack = True
+            else:
+                blackjack = False
+        return blackjack
