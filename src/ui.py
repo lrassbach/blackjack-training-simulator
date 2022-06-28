@@ -1,4 +1,5 @@
 #ui class
+import players
 
 class UI:
     def welcome():
@@ -24,20 +25,22 @@ class UI:
                 else:
                     print('Error! Invalid entry.')
 
-    def action_check(choice, action):
+    def action_check(choice, action, score):
             check = False
             quit = False
             quitter = ['q','Q']
             if choice == action:
                 check = True
                 print("Correct!")
-                return check, quit
+                score += 1
+                return check, quit, score
             if choice in quitter:
                 quit = True
-                return check, quit
+                return check, quit, score
             else:
                 print("WRONG. The correct choice was "+str(action))
-                return check, quit
+                score -= 1
+                return check, quit, score
     
     def another_game():
         #TODO make "valid choice" into a single callable method
