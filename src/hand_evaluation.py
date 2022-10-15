@@ -36,7 +36,7 @@ class HandEvaluation:
         elif hand_value > 11 and hand_value < 17 and dealer_up_value > 6:
             action = 'h'
         elif hand_value == 10 and dealer_up_value < 10:
-            action = 'd'
+            action = 'h'
         elif hand_value == 10 and dealer_up_value > 9:
             action = 'd'
         elif hand_value == 9 and ((dealer_up_value < 3 or dealer_up_value > 6) == True):
@@ -69,7 +69,7 @@ class HandEvaluation:
         elif non_ace == 7 and dealer_up_value in [2,7,8]:
             action = 's'
         elif non_ace == 7 and dealer_up_value in [3,4,5,6]:
-            action = 's'
+            action = 'd'
         elif non_ace ==7 and dealer_up_value > 8:
             action = 'h'
         else:
