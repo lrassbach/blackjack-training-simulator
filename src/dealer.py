@@ -5,6 +5,7 @@ from players import Players
 class Dealer:
         #this function puts together the table deck
         def table_deck_builder(card_deck_list, num_decks):
+            #refactor
             ##UI will set input num_decks
             table_deck = []
             x = 0
